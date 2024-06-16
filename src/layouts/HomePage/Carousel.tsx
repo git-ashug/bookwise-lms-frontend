@@ -1,3 +1,5 @@
+import { ReturnBook } from "./ReturnBook";
+
 export const Carousel = () => {
   return (
     <div className="container mt-5" style={{ height: 550 }}>
@@ -13,61 +15,25 @@ export const Carousel = () => {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <div className="row d-flex justify-content-center align-items-center">
-              <div className="col-xs-6 col-sm-6 col-md-4 col-lg-3">
-                <div className="text-center">
-                <img
-                  src={require("./../../../Images/BooksImages/new-book-1.png")}
-                  alt="book"
-                  height={"233"}
-                  width={"151"}
-                />
-                <h6 className="mt-2">Book</h6>
-                <p>Bookwise</p>
-                <a className="btn main-color text-white" href="#">
-                  Reserve
-                </a>
-                </div>
-              </div>
+              <ReturnBook />
+              <ReturnBook />
+              <ReturnBook />
             </div>
           </div>
 
           <div className="carousel-item">
             <div className="row d-flex justify-content-center align-items-center">
-              <div className="col-xs-6 col-sm-6 col-md-4 col-lg-3">
-                <div className="text-center">
-                <img
-                  src={require("./../../../Images/BooksImages/new-book-1.png")}
-                  alt="book"
-                  height={"233"}
-                  width={"151"}
-                />
-                <h6 className="mt-2">Book</h6>
-                <p>Bookwise</p>
-                <a className="btn main-color text-white" href="#">
-                  Reserve
-                </a>
-                </div>
-              </div>
+              <ReturnBook />
+              <ReturnBook />
+              <ReturnBook />
             </div>
           </div>
 
           <div className="carousel-item">
             <div className="row d-flex justify-content-center align-items-center">
-              <div className="col-xs-6 col-sm-6 col-md-4 col-lg-3">
-                <div className="text-center">
-                <img
-                  src={require("./../../../Images/BooksImages/new-book-1.png")}
-                  alt="book"
-                  height={"233"}
-                  width={"151"}
-                />
-                <h6 className="mt-2">Book</h6>
-                <p>Bookwise</p>
-                <a className="btn main-color text-white" href="#">
-                  Reserve
-                </a>
-                </div>
-              </div>
+              <ReturnBook />
+              <ReturnBook />
+              <ReturnBook />
             </div>
           </div>
         </div>
@@ -100,19 +66,7 @@ export const Carousel = () => {
       {/*Mobile */}
       <div className="d-lg-none mt-3">
         <div className="row d-flex justify-content-center align-items-center">
-          <div className="text-center">
-            <img
-              src={require("./../../../Images/BooksImages/new-book-1.png")}
-              alt="book"
-              height={"233"}
-              width={"151"}
-            />
-            <h6 className="mt-2">Book</h6>
-            <p>Bookwise</p>
-            <a className="btn main-color text-white" href="#">
-              Reserve
-            </a>
-          </div>
+          <ReturnBook />
         </div>
       </div>
 

@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
 import { Navbar } from "./layouts/NavbarAndFooter/Navbar";
-import { ExploreTopBooks } from "./layouts/NavbarAndFooter/HomePage/ExploreTopBooks";
-import { Carousel } from "./layouts/NavbarAndFooter/HomePage/Carousel";
+import { ExploreTopBooks } from "./layouts/HomePage/ExploreTopBooks";
+import { Carousel } from "./layouts/HomePage/Carousel";
 
 function App() {
   return (
