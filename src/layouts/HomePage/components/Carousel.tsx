@@ -1,10 +1,11 @@
 import { ReturnBook } from "./ReturnBook";
 import { useState, useEffect } from "react";
 import BookModel from "../../../models/BookModel";
+import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 
 export const Carousel = () => {
   const [books, setBooks] = useState<BookModel[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(null);
 
   useEffect(() => {
@@ -51,11 +52,7 @@ export const Carousel = () => {
   }, []); //empty array as of now, useEffect will be triggered only once at the start.
 
   if (isLoading) {
-    return (
-      <div className="container mt-5">
-        <p>Loading...</p>
-      </div>
-    );
+    return <SpinnerLoading />;
   }
 
   if (httpError != null) {
