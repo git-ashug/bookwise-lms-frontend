@@ -16,9 +16,12 @@ export const SearchBooksPage = () => {
   const [totalAmountOfBooks, setTotalAmountOfBooks] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
-  /*For search */
+  /*For search: */
   const [search, setSearch] = useState("");
   const [searchUrl, setSearchUrl] = useState("");
+
+  /*For category: */
+  const [categorySelection, setCategorySelection] = useState("Book Category");
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -87,6 +90,23 @@ export const SearchBooksPage = () => {
     }
   };
 
+  const categoryField = (value: string) => {
+    if (
+      value.toLowerCase() === "fe" ||
+      value.toLowerCase() === "be" ||
+      value.toLowerCase() === "data" ||
+      value.toLowerCase() === "devops"
+    ) {
+      setCategorySelection(value);
+      setSearchUrl(
+        `/search/findByCategory?category=${value}&page=0&size=${booksPerPage}`
+      );
+    } else {
+      setCategorySelection("All");
+      setSearchUrl(`?page=0&size=${booksPerPage}`);
+    }
+  };
+
   const indexOfLastBook: number = currentPage * booksPerPage;
   const indexOfFirstBook: number = indexOfLastBook - booksPerPage;
   let lastItem =
@@ -129,28 +149,34 @@ export const SearchBooksPage = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Category
+                {/* Category */}
+                {categorySelection}
               </button>
               <ul
                 className="dropdown-menu"
                 aria-labelledby="dropdownMenuButton1"
               >
-                <li>
+                <li onClick={() => categoryField("All")}>
                   <a className="dropdown-item" href="#">
                     All
                   </a>
                 </li>
-                <li>
+                <li onClick={() => categoryField("FE")}>
                   <a className="dropdown-item" href="#">
                     Frontend
                   </a>
                 </li>
-                <li>
+                <li onClick={() => categoryField("BE")}>
                   <a className="dropdown-item" href="#">
                     Backend
                   </a>
                 </li>
-                <li>
+                <li onClick={() => categoryField("Data")}>
+                  <a className="dropdown-item" href="#">
+                    Data
+                  </a>
+                </li>
+                <li onClick={() => categoryField("Devops")}>
                   <a className="dropdown-item" href="#">
                     DevOps
                   </a>
@@ -160,6 +186,7 @@ export const SearchBooksPage = () => {
           </div>
         </div>
 
+        {/*Show alternative text in case of result not found */}
         {totalAmountOfBooks > 0 ? (
           <>
             <div className="mt-3">
