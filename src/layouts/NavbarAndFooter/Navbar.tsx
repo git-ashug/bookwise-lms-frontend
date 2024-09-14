@@ -20,7 +20,7 @@ export const Navbar = () => {
           <ul className="navbar-nav">
             <li className="nav-item">
               {/* <a className="nav-link active" href="#"> Home </a> */}
-              <NavLink className="nav-link active" to="/home">
+              <NavLink className="nav-link" to="/home">
                 Home
               </NavLink>
             </li>
