@@ -1,4 +1,9 @@
+import { Link } from "react-router-dom";
+import { useOktaAuth } from "@okta/okta-react";
+
 export const Heros = () => {
+  const { oktaAuth, authState } = useOktaAuth();
+
   return (
     <div>
       {/*Desktop Hero */}
@@ -16,9 +21,19 @@ export const Heros = () => {
                 reading.Whether it is to learn a new skill or grow within one.
                 We will be able to provide the top content for you!
               </p>
-              <a className="btn main-color btn-lg text-white" href="#">
-                Sign up
-              </a>
+              {authState?.isAuthenticated ? (
+                <Link
+                  type="button"
+                  className="btn main-color btn-lg text-white"
+                  to="/search"
+                >
+                  Explore top books
+                </Link>
+              ) : (
+                <Link className="btn main-color btn-lg text-white" to="/login">
+                  Sign up
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -34,9 +49,6 @@ export const Heros = () => {
                 book selection and our books are always going to be our top
                 prority.
               </p>
-              <a className="btn main-color btn-lg text-white" href="#">
-                Sign up
-              </a>
             </div>
           </div>
           <div className="col-sm-6 col-md-6">
@@ -57,9 +69,19 @@ export const Heros = () => {
                 reading.Whether it is to learn a new skill or grow within one.
                 We will be able to provide the top content for you!
               </p>
-              <a className="btn main-color btn-lg text-white" href="#">
-                Sign up
-              </a>
+              {authState?.isAuthenticated ? (
+                <Link
+                  type="button"
+                  className="btn main-color btn-lg text-white"
+                  to="/search"
+                >
+                  Explore top books
+                </Link>
+              ) : (
+                <Link className="btn main-color btn-lg text-white" to="/login">
+                  Sign up
+                </Link>
+              )}
             </div>
             <div className="mt-2">
               <div className="col-image-right"></div>
