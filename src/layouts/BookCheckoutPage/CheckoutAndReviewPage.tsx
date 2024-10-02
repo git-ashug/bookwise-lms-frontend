@@ -1,11 +1,42 @@
-import React from "react";
 import BookModel from "../../models/BookModel";
 import { Link } from "react-router-dom";
 
 export const CheckoutAndReviewPage: React.FC<{
   book: BookModel | undefined;
   mobile: boolean;
+  currentLoansCount: number;
+  isAuthenticated: any;
+  isCheckedOut: boolean;
+  checkoutBook: any;
 }> = (props) => {
+  function buttonRender() {
+    if (props.isAuthenticated) {
+      if (!props.isCheckedOut && props.currentLoansCount < 5) {
+        return (
+          <button
+            className="btn btn-success btn-lg"
+            onClick={() => props.checkoutBook()}
+          >
+            Checkout
+          </button>
+        );
+      } else if (props.isCheckedOut) {
+        return (
+          <p>
+            <b>Book checked out. Enjoy!</b>
+          </p>
+        );
+      } else if (!props.isCheckedOut) {
+        return <p className="text-danger">Too many books checked out.</p>;
+      }
+    } else {
+      return (
+        <Link to="/login" className="btn btn-success btn-lg">
+          Sign In
+        </Link>
+      );
+    }
+  }
   return (
     <div
       className={
@@ -15,7 +46,7 @@ export const CheckoutAndReviewPage: React.FC<{
       <div className="card-body container">
         <div className="mt-3">
           <p>
-            <b>0/5</b> books checked out
+            <b>{props.currentLoansCount}/5</b> books checked out
           </p>
           <hr />
           {props.book &&
@@ -34,10 +65,7 @@ export const CheckoutAndReviewPage: React.FC<{
             </p>
           </div>
         </div>
-        <Link to="/#" className="btn btn-success btn-lg">
-          Sign In
-        </Link>
-
+        {buttonRender()}
         <hr />
         <p className="mt-3">
           This number can change until placing order has been complete.
