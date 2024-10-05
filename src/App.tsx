@@ -7,10 +7,11 @@ import { SearchBooksPage } from "./layouts/SearchBooksPage/SearchBooksPage";
 import { Redirect, Route, useHistory } from "react-router-dom";
 import { BookCheckoutPage } from "./layouts/BookCheckoutPage/BookCheckoutPage";
 import { OktaAuth, toRelativeUrl } from "@okta/okta-auth-js";
-import { LoginCallback, Security } from "@okta/okta-react";
+import { LoginCallback, SecureRoute, Security } from "@okta/okta-react";
 import LoginWidget from "./Auth/LoginWidget";
 import { oktaConfig } from "./lib/oktaConfig";
 import { ReviewListPage } from "./layouts/BookCheckoutPage/ReviewListPage/ReviewListPage";
+import { ShelfPage } from "./layouts/ShelfPage/ShelfPage";
 
 const oktaAuth = new OktaAuth(oktaConfig);
 
@@ -55,6 +56,10 @@ export const App = () => {
             render={() => <LoginWidget config={oktaConfig} />}
           />
           <Route path="/login/callback" component={LoginCallback}></Route>
+          {/* SecureRoute: Without logging in, user can't access /shelf */}
+          <SecureRoute path="/shelf">
+            <ShelfPage />
+          </SecureRoute>
         </div>
         <Footer />
       </Security>
