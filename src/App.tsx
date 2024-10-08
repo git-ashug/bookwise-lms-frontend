@@ -12,6 +12,7 @@ import LoginWidget from "./Auth/LoginWidget";
 import { oktaConfig } from "./lib/oktaConfig";
 import { ReviewListPage } from "./layouts/BookCheckoutPage/ReviewListPage/ReviewListPage";
 import { ShelfPage } from "./layouts/ShelfPage/ShelfPage";
+import { MessagesPage } from "./layouts/MessagesPage/MessagesPage";
 
 const oktaAuth = new OktaAuth(oktaConfig);
 
@@ -59,6 +60,9 @@ export const App = () => {
           {/* SecureRoute: Without logging in, user can't access /shelf */}
           <SecureRoute path="/shelf">
             <ShelfPage />
+          </SecureRoute>
+          <SecureRoute path="/messages">
+            <MessagesPage />
           </SecureRoute>
         </div>
         <Footer />
