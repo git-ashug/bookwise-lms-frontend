@@ -1,8 +1,10 @@
 import { useOktaAuth } from "@okta/okta-react";
 import { useState } from "react";
+import { Redirect } from "react-router-dom";
+import { AdminMessages } from "./components/AdminMessages";
 
 export const ManageLibraryPage = () => {
-  const { oktaAuth } = useOktaAuth();
+  const { authState } = useOktaAuth();
 
   const [changeQuantityOfBooksClick, setChangeQuantityOfBooksClick] =
     useState(false);
@@ -23,6 +25,10 @@ export const ManageLibraryPage = () => {
     setMessagesClick(true);
   }
 
+  if (authState?.accessToken?.claims.userType === undefined) {
+    //normal authenticated users will not have userType. Only admin users will have userType set at Okta side by developer
+    return <Redirect to="/home" />;
+  }
   return (
     <div className="container">
       <div className="mt-5">
@@ -66,7 +72,7 @@ export const ManageLibraryPage = () => {
               aria-selected="false"
               onClick={messagesClickFunction}
             >
-              Admin messages
+              Messages
             </button>
           </div>
         </nav>
@@ -94,7 +100,7 @@ export const ManageLibraryPage = () => {
             role="tabpanel"
             aria-labelledby="nav-messages-tab"
           >
-            {messagesClick ? <>Admin Messages</> : <></>}
+            {messagesClick ? <AdminMessages /> : <></>}
           </div>
         </div>
       </div>
