@@ -84,7 +84,7 @@ export const ManageLibraryPage = () => {
             role="tabpanel"
             aria-labelledby="nav-add-book-tab"
           >
-            Add new tab
+            Add new book
           </div>
           <div
             className="tab-pane fade"
