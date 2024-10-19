@@ -145,12 +145,14 @@ export const ChangeQuantityOfBook: React.FC<{
         >
           Add Quantity
         </button>
-        <button
-          className="m-1 btn btn-md btn-warning"
-          onClick={decreaseQuantity}
-        >
-          Decrease Quantity
-        </button>
+        {quantity > 1 && (
+          <button
+            className="m-1 btn btn-md btn-warning"
+            onClick={decreaseQuantity}
+          >
+            Decrease Quantity
+          </button>
+        )}
       </div>
     </div>
   );
