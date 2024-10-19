@@ -40,7 +40,7 @@ export const AddNewBook = () => {
   }
 
   async function submitNewBook() {
-    const url = `http://localhost:8080/api/books/secure/admin/add`;
+    const url = `${process.env.REACT_APP_API}/books/secure/admin/add`;
     if (
       authState?.isAuthenticated &&
       title !== "" &&
