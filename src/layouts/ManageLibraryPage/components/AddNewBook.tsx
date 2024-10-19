@@ -33,7 +33,6 @@ export const AddNewBook = () => {
     reader.readAsDataURL(file);
     reader.onload = function () {
       setSelectedImage(reader.result); //setting the state of image
-      console.log(reader.result);
     };
     reader.onerror = function (error) {
       console.log("Error", error);
