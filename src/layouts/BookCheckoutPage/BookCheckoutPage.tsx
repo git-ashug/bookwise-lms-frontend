@@ -32,6 +32,9 @@ export const BookCheckoutPage = () => {
   const [isCheckedOut, setIsCheckedOut] = useState(false);
   const [isLoadingBookCheckedOut, setIsLoadingBookCheckedOut] = useState(true);
 
+  //Payment state
+  const [displayError, setDisplayError] = useState(false);
+
   const bookId = window.location.pathname.split("/")[2]; // localhost:3000/checkout/1
 
   useEffect(() => {
@@ -129,7 +132,7 @@ export const BookCheckoutPage = () => {
 
         const userReviewResponse = await fetch(url, requestOptions);
         if (!userReviewResponse.ok) {
-          throw new Error("Something went wrong");
+          throw new Error("Something went wrong!");
         }
         const userReviewResponseJson = await userReviewResponse.json();
         setIsReviewLeft(userReviewResponseJson);
@@ -208,9 +211,11 @@ export const BookCheckoutPage = () => {
   }
 
   if (httpError != null) {
-    <div className="container mt-5">
-      <p>{httpError}</p>
-    </div>;
+    return (
+      <div className="container mt-5">
+        <p>{httpError}</p>
+      </div>
+    );
   }
 
   async function checkoutBook() {
@@ -224,8 +229,12 @@ export const BookCheckoutPage = () => {
     };
     const checkoutResponse = await fetch(url, requestOptions);
     if (!checkoutResponse.ok) {
-      throw new Error("Something went wrong!");
+      setDisplayError(true);
+      window.scrollTo(0, 0);
+      return; // Preventing further execution
+      // throw new Error("Something went wrong!");
     }
+    setDisplayError(false);
     setIsCheckedOut(true);
   }
 
@@ -261,6 +270,11 @@ export const BookCheckoutPage = () => {
     <div>
       {/* Desktop view */}
       <div className="container d-none d-lg-block">
+        {displayError && (
+          <div className="alert alert-danger mt-3" role="alert">
+            Please pay outstanding fees and/or return late book(s).
+          </div>
+        )}
         <div className="row mt-5">
           <div className="col-sm-2 col-md-2">
             {book?.img ? (
@@ -299,6 +313,11 @@ export const BookCheckoutPage = () => {
 
       {/* Mobile View */}
       <div className="container d-lg-none mt-5">
+        {displayError && (
+          <div className="alert alert-danger mt-3" role="alert">
+            Please pay outstanding fees and/or return late book(s).
+          </div>
+        )}
         <div className="d-flex justify-content-center align-items-center">
           {book?.img ? (
             <img src={book?.img} width="226" height="349" alt="Book" />
