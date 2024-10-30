@@ -108,7 +108,7 @@ The payment system for late fees is implemented using Stripe. The `PaymentPage` 
 
 Contributions are welcome! Here are several ways you can contribute:
 
-- **[Report Issues](https://github.com/git-ashug/bookwise-lms-frontend/issues)**: Submit bugs found or log feature requests for the `bookwise-lms-backend` project.
+- **[Report Issues](https://github.com/git-ashug/bookwise-lms-frontend/issues)**: Submit bugs found or log feature requests for the `bookwise-lms-frontend` project.
 - **[Submit Pull Requests](https://github.com/git-ashug/bookwise-lms-frontend/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
 - **[Join the Discussions](https://github.com/git-ashug/bookwise-lms-frontend/discussions)**: Share your insights, provide feedback, or ask questions.
 ---
